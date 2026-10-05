@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Wycena</title>
+
+<style>
+body{font-family:Arial;margin:20px;background:#f5f5f5}
+
+.box{background:white;border:1px solid #ddd;padding:15px}
+
+.logo{background:#222;color:white;width:70px;padding:10px;text-align:center;font-weight:bold}
+
+.top{display:flex;gap:25px;align-items:center;border-bottom:1px dotted #777;padding-bottom:12px}
+
+.blue{color:#28758a;font-size:11px}
+
+.data{display:flex;gap:15px;padding:12px 0}
+
+.data div{flex:1}
+
+input,select{width:100%;height:25px;border:1px solid #cbdde2;background:#eef8fb}
+
+table{width:100%;border-collapse:collapse;font-size:10px}
+
+th,td{border:1px solid #ddd;padding:4px;text-align:center}
+
+th{background:#f2f6f7}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<div class="top">
+    <div class="logo">TWOJE<br>LOGO</div>
+
+    <div class="blue">
+        <b>TWOJA FIRMA sp. z o.o.</b><br>
+        ul. Solarna 18<br>
+        Warszawa 30-333
+    </div>
+
+    <div class="blue">
+        www.twojafirma.pl<br>
+        biuro@twojafirma.pl
+    </div>
+</div>
+
+<div class="data">
+
+    <div>
+        <b>DANE OFERTY</b><br>
+        <input value="112/2024"><br>
+        <input type="date">
+    </div>
+
+    <div>
+        <b>ZAMAWIAJĄCY</b><br>
+        <input placeholder="Imię i nazwisko"><br>
+        <input placeholder="Adres">
+    </div>
+
+    <div>
+        <b>MONTAŻ</b><br>
+        <input placeholder="Adres"><br>
+        <input type="date">
+    </div>
+
+</div>
+
+<div class="blue">
+    <b>WYCENA DLA:</b>
+    <select style="width:120px">
+        <option>KUCHNIA</option>
+        <option>ŁAZIENKA</option>
+    </select>
+</div>
+
+<br>
+
+<table>
+<tr>
+    <th>SZAFKA</th>
+    <th>KORPUS</th>
+    <th>FRONT</th>
+    <th>SZER.</th>
+    <th>WYS.</th>
+    <th>GŁĘB.</th>
+    <th>POW.</th>
+    <th>CENA</th>
+</tr>
+
+<tr>
+    <td>1.1 SZAFKA 1</td>
+    <td><select><option>Sosna</option></select></td>
+    <td><select><option>Dąb Riviera</option></select></td>
+    <td><input></td>
+    <td><input></td>
+    <td><input></td>
+    <td>0.00</td>
+    <td>75 zł</td>
+</tr>
+
+<tr>
+    <td>1.2 SZAFKA 2</td>
+    <td>0.00</td>
+    <td>75 zł</td>
+</tr>
+
+</table>
+
+</div>
+
+</body>
+</html>
