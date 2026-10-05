@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Wycena dla stolarza</title>
+
+<style>
+
+body{
+    font-family: Arial;
+    background:#f2f2f2;
+    margin:20px;
+}
+
+.box{
+    background:white;
+    padding:15px;
+    border:1px solid #ccc;
+}
+
+.logo{
+    background:#222;
+    color:white;
+    padding:10px;
+    width:70px;
+    text-align:center;
+    font-weight:bold;
+}
+
+.top{
+    display:flex;
+    gap:20px;
+    align-items:center;
+    border-bottom:1px dotted #777;
+    padding-bottom:10px;
+}
+
+.blue{
+    color:#28758a;
+    font-size:12px;
+}
+
+.dane{
+    display:flex;
+    gap:15px;
+    margin-top:15px;
+}
+
+.dane div{
+    flex:1;
+}
+
+input, select{
+    width:100%;
+    height:25px;
+    border:1px solid #bbb;
+    background:#eef8fb;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+    font-size:12px;
+}
+
+th,td{
+    border:1px solid #ccc;
+    padding:5px;
+    text-align:center;
+}
+
+th{
+    background:#e8eeee;
+}
+
+button{
+    margin-top:10px;
+    padding:8px 12px;
+    border:0;
+    background:#28758a;
+    color:white;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1d5c6c;
+}
+
+.podsumowanie{
+    width:350px;
+    margin-left:auto;
+    margin-top:20px;
+    border:1px solid #ccc;
+}
+
+.podsumowanie div{
+    padding:8px;
+    border-bottom:1px solid #ddd;
+    display:flex;
+    justify-content:space-between;
+}
+
+.suma{
+    background:#28758a;
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <div class="top">
+
+        <div class="logo">
+            TWOJE<br>LOGO
+        </div>
+
+        <div class="blue">
+            <b>TWOJA FIRMA</b><br>
+            ul. Solarna 18<br>
+            Warszawa
+        </div>
+
+        <div class="blue">
+            www.twojafirma.pl<br>
+            biuro@twojafirma.pl
+        </div>
+
+    </div>
+
+
+    <div class="dane">
+
+        <div>
+            <b>DANE OFERTY</b><br>
+
+            Numer oferty:
+            <input value="112/2024">
+
+            Data:
+            <input type="date">
+        </div>
+
+
+        <div>
+            <b>ZAMAWIAJĄCY</b><br>
+
+            Imię i nazwisko:
+            <input placeholder="Imię i nazwisko">
+
+            Adres:
+            <input placeholder="Adres">
+        </div>
+
+
+        <div>
+            <b>MONTAŻ</b><br>
+
+            Adres:
+            <input placeholder="Adres">
+
+            Data montażu:
+            <input type="date">
+        </div>
+
+    </div>
+
+
+    <p class="blue">
+        <b>WYCENA DLA:</b>
+
+        <select style="width:130px">
+            <option>KUCHNIA</option>
+            <option>ŁAZIENKA</option>
+            <option>SALON</option>
+            <option>GARDEROBA</option>
+        </select>
+    </p>
+
+
+    <table id="tabela">
+
+        <tr>
+            <th>SZAFKA</th>
+            <th>KORPUS</th>
+            <th>FRONT</th>
+            <th>SZER.</th>
+            <th>WYS.</th>
+            <th>GŁĘB.</th>
+            <th>ILOŚĆ</th>
+            <th>CENA</th>
+            <th>RAZEM</th>
+            <th></th>
+        </tr>
+
+
+        <tr>
+
+            <td>
+                <input value="Szafka 1">
+            </td>
+
+            <td>
+                <select>
+                    <option>Sosna</option>
+                    <option>Dąb</option>
+                    <option>Biała płyta</option>
+                </select>
+            </td>
+
+            <td>
+                <select>
+                    <option>Dąb Riviera</option>
+                    <option>Biały</option>
+                    <option>Czarny</option>
+                </select>
+            </td>
+
+            <td>
+                <input class="szer" type="number" value="600">
+            </td>
+
+            <td>
+                <input class="wys" type="number" value="720">
+            </td>
+
+            <td>
+                <input type="number" value="560">
+            </td>
+
+            <td>
+                <input class="ilosc" type="number" value="1">
+            </td>
+
+            <td>
+                <input class="cena" type="number" value="750">
+            </td>
+
+            <td class="razem">
+                750 zł
+            </td>
+
+            <td>
+                <button onclick="usun(this)">X</button>
+            </td>
+
+        </tr>
+
+    </table>
+
+
+    <button onclick="dodaj()">
+        + DODAJ SZAFKĘ
+    </button>
+
+
+    <div class="podsumowanie">
+
+        <div>
+            <span>Meble:</span>
+            <b id="meble">750 zł</b>
+        </div>
+
+        <div>
+            <span>Transport:</span>
+
+            <input
+                id="transport"
+                type="number"
+                value="0"
+                style="width:100px"
+                onchange="licz()"
+            >
+        </div>
+
+        <div>
+            <span>Montaż:</span>
+
+            <input
+                id="montaz"
+                type="number"
+                value="0"
+                style="width:100px"
+                onchange="licz()"
+            >
+        </div>
+
+        <div>
+            <span>Rabat %:</span>
+
+            <input
+                id="rabat"
+                type="number"
+                value="0"
+                style="width:100px"
+                onchange="licz()"
+            >
+        </div>
+
+        <div>
+            <span>Netto:</span>
+            <b id="netto">750 zł</b>
+        </div>
+
+        <div>
+            <span>VAT 23%:</span>
+            <b id="vat">172,50 zł</b>
+        </div>
+
+        <div class="suma">
+            <span>DO ZAPŁATY:</span>
+            <span id="brutto">922,50 zł</span>
+        </div>
+
+    </div>
+
+
+    <br>
+
+    <b>UWAGI:</b>
+
+    <br>
+
+    <textarea
+        style="width:100%;height:70px;margin-top:5px"
+        placeholder="Tutaj wpisz dodatkowe informacje..."
+    ></textarea>
+
+
+</div>
+
+
+<script>
+
+function licz(){
+
+    var suma = 0;
+
+    var wiersze = document.querySelectorAll("#tabela tr");
+
+    for(var i = 1; i < wiersze.length; i++){
+
+        var cena = wiersze[i].querySelector(".cena");
+        var ilosc = wiersze[i].querySelector(".ilosc");
+
+        if(cena && ilosc){
+
+            var wynik =
+                Number(cena.value) *
+                Number(ilosc.value);
+
+            wiersze[i].querySelector(".razem").innerHTML =
+                wynik.toFixed(2) + " zł";
+
+            suma = suma + wynik;
+        }
+    }
+
+
+    var transport =
+        Number(document.getElementById("transport").value);
+
+    var montaz =
+        Number(document.getElementById("montaz").value);
+
+    var rabat =
+        Number(document.getElementById("rabat").value);
+
+
+    var razem = suma + transport + montaz;
+
+    var znizka =
+        razem * rabat / 100;
+
+    var netto =
+        razem - znizka;
+
+    var vat =
+        netto * 0.23;
+
+    var brutto =
+        netto + vat;
+
+
+    document.getElementById("meble").innerHTML =
+        suma.toFixed(2) + " zł";
+
+    document.getElementById("netto").innerHTML =
+        netto.toFixed(2) + " zł";
+
+    document.getElementById("vat").innerHTML =
+        vat.toFixed(2) + " zł";
+
+    document.getElementById("brutto").innerHTML =
+        brutto.toFixed(2) + " zł";
+}
+
+
+function dodaj(){
+
+    var tabela =
+        document.getElementById("tabela");
+
+    var wiersz =
+        tabela.insertRow(-1);
+
+
+    wiersz.innerHTML = `
+
+        <td>
+            <input value="Nowa szafka">
+        </td>
+
+        <td>
+            <select>
+                <option>Sosna</option>
+                <option>Dąb</option>
+                <option>Biała płyta</option>
+            </select>
+        </td>
+
+        <td>
+            <select>
+                <option>Dąb Riviera</option>
+                <option>Biały</option>
+                <option>Czarny</option>
+            </select>
+        </td>
+
+        <td>
+            <input type="number" value="600">
+        </td>
+
+        <td>
+            <input type="number" value="720">
+        </td>
+
+        <td>
+            <input type="number" value="560">
+        </td>
+
+        <td>
+            <input class="ilosc" type="number" value="1">
+        </td>
+
+        <td>
+            <input class="cena" type="number" value="750">
+        </td>
+
+        <td class="razem">
+            750 zł
+        </td>
+
+        <td>
+            <button onclick="usun(this)">X</button>
+        </td>
+
+    `;
+
+    licz();
+}
+
+
+function usun(przycisk){
+
+    var wiersz =
+        przycisk.parentNode.parentNode;
+
+    wiersz.remove();
+
+    licz();
+}
+
+
+document.addEventListener("input", function(){
+
+    licz();
+
+});
+
+</script>
+
+</body>
+</html>
